@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="js/vue.js"></script>
+<body>
+    <div id="box">
+    <demo2></demo2>
+    <demo2></demo2>
+    <demo3></demo3>
+    {{msg1}}
+    </div>
+    <div id="app">
+        <!-- 访问不到demo内容 -->
+        <!-- <demo2></demo2> -->
+     </div>
+    <!-- 定义模板 内容-->
+    <template id="mytemplate">
+        <div>
+      <img src="img/guonei0407_17.jpg" alt="">
+      <h1 @click="fn">我放了个图片{{msg}}</h1>
+      <!-- <p>{{msg}}</p> -->
+        </div>
+     </template>
+</body>
+<script>
+   
+    let vm = new Vue({
+        el:'#box',
+       data:{
+           msg1:'我是data里面的数据'
+       },
+    //    定义局部组件
+       components:{
+    //  组件名称
+      'demo2':{
+        //   template:可以式标签 或者 #template ID
+        template:"#mytemplate",
+        data:function(){
+            return{
+                msg:'组件msg'
+            }
+        },
+        methods:{
+            fn(){
+                console.log(1)
+            }
+        }
+      },
+
+    //   如果模版使用了驼峰命名法,则调用时需要用-连接
+      'demo3':{
+        template:'<div>我是第二个组件</div>'
+      }
+       }
+    })
+    let vm1 = new Vue({
+        el:'#app'
+    })
+</script>
+</html>

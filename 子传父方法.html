@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="js/vue.js">
+</script>
+<body>
+     <div id="box">
+        <item></item>
+     </div>
+    <template id="parent">
+        <div>
+            <h1>我是父组件</h1>
+            <!-- 父传子步骤三 -->
+
+         <child :inmsg='msg' @change='getVal'></child>
+         <P>{{showname}}</P>
+        </div>
+    </template>
+    <template id="late">
+     <div>
+         <h2>我是子组件</h2>
+         <div>
+             <!-- 接收父传递过来的内容 -->
+             <!-- 父传子步骤2 -->
+             接收父传递过来的内容:{{inmsg}}
+         </div>
+         <button @click='fn'>点击获取数据传递给父</button>
+     </div>
+    </template>
+</body>
+<script>
+    let vm = new Vue({
+        el:'#box',
+        data:{},
+        components:{
+           'item':{
+            template:'#parent',
+            data:function(){
+              return {
+                  msg:'我被父组件传递到了子组件',
+                  showname:''
+              }
+            },
+            methods:{
+             getVal(val){
+                console.log(val)
+                this.showname = val
+             }
+            },
+            components:{
+                'child':{
+                    template:'#late' ,
+                    // 父传子步骤1  子定义props接收父传过来的内容
+                    props:['inmsg'],
+                     data:function(){
+                        return {
+                            cmag:'我是子组件内容'
+                        }
+                     },
+                     methods:{
+                         fn(){
+                             this.$emit('change',this.cmag)
+                         }
+                     }
+                }
+            }
+           }
+        }
+    })
+</script>
+</html>

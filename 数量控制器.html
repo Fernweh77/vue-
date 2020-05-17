@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="js/vue.js"></script>
+<body>
+      <div id="box">
+        <item></item>
+      </div>
+     <template id="tempname">
+         <!-- 父组件 -->
+       <div>
+        {{unm}}
+         <son @change='getVal'></son>
+       </div>
+     </template>
+   <template id="sonname">
+        <!-- 子组件 -->
+          <div>
+            <button @click='fn'>增加1</button>
+            <button @click='wsh'>减小1</button>
+          </div>
+   </template>
+</body>
+<script>
+    let vm = new Vue({
+     el:'#box',
+     data:{},
+     components:{                    //父
+         'item':{
+             template:'#tempname',
+             data:function(){
+                return {
+                    unm:0
+                }
+             },
+             methods:{
+               getVal(val){
+                   console.log(val)
+                   this.unm=val
+               }
+             },
+             components:{            //子
+                 'son':{
+                    template:'#sonname',
+                    data:function(){
+                        return {
+                            nmun:0
+                        }
+                    },
+                    methods:{
+                        fn(){
+                            this.nmun++
+                            this.$emit('change',this.nmun)                         
+                            console.log(111)
+                        },
+                        wsh(){
+                            this.nmun--
+                            this.$emit('change',this.nmun)
+                            console.log(111)
+                        },
+                    }
+                 }
+             }
+         }
+     }
+ })
+</script>
+</html>

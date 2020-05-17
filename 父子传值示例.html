@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/父子传值示例.css">
+</head>
+<script src="js/vue.js"></script>
+<body>
+    <div id="box">
+     <demo ctitle='书影音'>
+        <img slot='leftIng' src="img/ic_actionbar_search_icon.png" alt="">
+        <img slot='rightIng' src="img/ic_create_group_chat_blue.png" alt="">
+    </demo>
+    <demo ctitle='广播'>
+        <img slot='leftIng' src="img/ic_status_search_user.png" alt="">
+        <img slot='rightIng' src="img/ic_create_group_chat_blue.png" alt="">
+    </demo>
+    <demo ctitle='小组'>
+        <img slot='leftIng' src="img/ic_actionbar_search_icon.png" alt="">
+        <img slot='rightIng' src="img/ic_create_group_chat_blue.png" alt="">
+    </demo>
+    <demo ctitle='我的'>
+        <img slot='leftIng' src="img/ic_settings.png" alt="">
+    </demo>
+  
+    </div>
+  <template id="tionname">
+            <div class="li">
+                <P>{{ctitle}}</P>
+                <div class="div">
+                    <!-- <img :src="src1" alt="">
+                    <img :src="src2" alt=""> -->
+                   <slot name='leftIng'></slot>
+                   <slot name='rightIng'></slot>
+                </div>
+            </div>
+       
+  </template>
+</body>
+<script>
+    let vm = new Vue({
+        el:'#box',
+        data:{
+
+        },
+       components:{
+           'demo':{
+               template:'#tionname',
+               props:['ctitle','src1','src2']
+           }
+       }
+    })
+</script>
+</html>

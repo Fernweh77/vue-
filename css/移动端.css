@@ -1,0 +1,59 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.function{
+    height: 3.125rem;
+   /* border: 1px solid red;
+    */
+    background-color: greenyellow;
+    position: relative;
+}
+.function input{
+    position: absolute;
+    left: 0.5625rem;
+    top: 0.5rem;
+    width: 85%;
+    height: 2.1875rem;
+    border-radius: 0.3125rem;
+    border: none;
+    text-indent: 33px;
+}
+.function img{
+    width: 1.5625rem;
+    height: 1.5625rem;
+}
+.function .imgnoe{
+    position: absolute;
+    left: 0.875rem;
+    top: 0.875rem;
+}
+.function .three{
+    position: absolute;
+    left: 79%;
+    top: 0.75rem;
+}
+.function .my{
+    position: absolute;
+    left: 90%;
+    top: 0.8125rem;
+}
+/* 底部 */
+.tion{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    border-top: 1px solid gray;
+    display: flex;
+    width: 100%;
+    text-align: center;
+}
+.tion .item{
+    flex: 1;
+    font-size: 1rem;
+}
+.tion .item img{
+    width: 3.4375rem;
+    height: 2.75rem;
+    
+}
